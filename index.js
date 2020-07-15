@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const fs = require('fs');
 const { scrape } = require("./getSailingsArray.js");
 
 const main = async () => {
@@ -11,7 +12,15 @@ try {
   const sailings = scrape();
   const jsonObj = JSON.stringify(await sailings);
   console.log(jsonObj);
-  return jsonObj
+  core.setOutput("sailings", jsonObj);
+  fs.writeFile("sailings.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+        console.log("An error occured while writing JSON Object to File.");
+        return console.log(err);
+    }
+ 
+    console.log("JSON file has been saved.");
+});
 } catch (error) {
   core.setFailed(error.message);
 }
