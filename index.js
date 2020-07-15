@@ -1,25 +1,22 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const fetch = require('node-fetch')
-// const {getSailingsArray} = require("./getSailingsArray.js");
+const scraper = require('table-scraper');
+
+const {getSailingsArray} = require("./getSailingsArray.js");
 
 const scrapeSailingSchedule = async () => {
-  console.log('\nScraping sailings schedule...');
-    const url = 'http://orca.bcferries.com:8080/cc/marqui/actualDepartures.asp'
-  let response = await fetch(url);
-  if (response.ok){
-    let json = await response.json();
-} else {
-  alert("HTTP-Error: " + response.status);
-}
+  console.log('Starting scrape');
+  const url = 'http://orca.bcferries.com:8080/cc/marqui/actualDepartures.asp'
+  const sailingPage = await scraper.get(
+    'http://orca.bcferries.com:8080/cc/marqui/actualDepartures.asp'
+  );
 
-  // const sailings = getSailingsArray(json);
-const sailings = json
+  const sailings = getSailingsArray(sailingPage);
 
-  // console.log(`Scraped ${sailings.length} routes`);
   return sailings;
 };
 
+const main = async () => {
 try {
   // `who-to-greet` input defined in action metadata file
   // const nameToGreet = core.getInput('who-to-greet');
@@ -30,7 +27,10 @@ try {
   // const payload = JSON.stringify(github.context.payload, undefined, 2)
   // console.log(`The event payload: ${payload}`);
   const sailings = scrapeSailingSchedule();
-  console.log(sailings);
+  console.log('sailings', await sailings)
 } catch (error) {
   core.setFailed(error.message);
 }
+}
+
+main();
