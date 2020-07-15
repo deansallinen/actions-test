@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const {getSailingsArray} = require("getSailingsArray");
+const {getSailingsArray} = require("./getSailingsArray.js");
 
 const scrapeSailingSchedule = async () => {
   console.log('\nScraping sailings schedule...');
