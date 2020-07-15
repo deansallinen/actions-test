@@ -1,4 +1,5 @@
 const moment = require('moment-timezone');
+const scraper = require('table-scraper');
 
 const makeRouteInfo = array => ({
   route_name: array[0][0].split('Sailing time: ')[0],
@@ -72,4 +73,11 @@ const getSailingsArray = data => {
   return routesArray;
 };
 
-module.exports = { getSailingsArray };
+const scrape = async () => {
+  const url = 'http://orca.bcferries.com:8080/cc/marqui/actualDepartures.asp'
+  const sailingPage = await scraper.get(url);
+  const sailings = getSailingsArray(sailingPage);
+  return sailings;
+}
+
+module.exports = { scrape };

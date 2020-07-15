@@ -1,13 +1,13 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Ferrytime Scraper'
+description: 'Scrape sailings'
 inputs:
   who-to-greet:  # id of input
     description: 'Who to greet'
     required: true
     default: 'World'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  sailings: # id of output
+    description: 'JSON of the sailings'
 runs:
   using: 'node12'
   main: 'index.js'
