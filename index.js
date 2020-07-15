@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const {getSailingsArray} = require("./getSailingsArray.js");
+// const {getSailingsArray} = require("./getSailingsArray.js");
 
 const scrapeSailingSchedule = async () => {
   console.log('\nScraping sailings schedule...');
@@ -12,9 +12,10 @@ const scrapeSailingSchedule = async () => {
   alert("HTTP-Error: " + response.status);
 }
 
-  const sailings = getSailingsArray(json);
+  // const sailings = getSailingsArray(json);
+const sailigs = json
 
-  console.log(`Scraped ${sailings.length} routes`);
+  // console.log(`Scraped ${sailings.length} routes`);
   return sailings;
 };
 
