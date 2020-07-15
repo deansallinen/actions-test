@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const fetch = require('node-fetch')
 // const {getSailingsArray} = require("./getSailingsArray.js");
 
 const scrapeSailingSchedule = async () => {
@@ -13,7 +14,7 @@ const scrapeSailingSchedule = async () => {
 }
 
   // const sailings = getSailingsArray(json);
-const sailigs = json
+const sailings = json
 
   // console.log(`Scraped ${sailings.length} routes`);
   return sailings;
