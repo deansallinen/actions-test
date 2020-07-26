@@ -27,3 +27,5 @@ jobs:
         id: hello
         with: 
           who-to-greet: 'Dean'
+      - name: List Directory
+        run: ls
