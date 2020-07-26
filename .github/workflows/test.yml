@@ -24,14 +24,11 @@ jobs:
     # Runs a single command using the runners shell
     - name: Run a one-line script
       id: hello
-      uses: deansallinen/actions-test@v1
+      uses: ./
       with: 
         who-to-greet: 'Dean'
 
     # Runs a set of commands using the runners shell
     - name: Get the output time
       run: echo "The time was ${{ steps.hello.outputs.time}}"
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+
