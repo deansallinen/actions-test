@@ -26,7 +26,7 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: hello
       - name: Update local files
-        run: ${{steps.hello.outputs.sailings}} > sailings.json
+        run: echo ${{steps.hello.outputs.sailings}} > sailings.json
       - name: Commit files
         run: |
               git config --local user.email "action@github.com"
