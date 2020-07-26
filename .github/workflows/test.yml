@@ -25,5 +25,7 @@ jobs:
       - name: Scrape site
         uses: ./ # Uses an action in the root directory
         id: hello
-      - name: List Directory
-        run: echo ${{steps.hello.outputs.sailings}} > sailings.json
+      - name: Save to JSON
+        run: steps.hello.outputs.sailings > sailings.json
+      - name: LS
+        run: ls
