@@ -25,7 +25,14 @@ jobs:
       - name: Scrape site
         uses: ./ # Uses an action in the root directory
         id: hello
-      - name: Save to JSON
+      - name: Update local files
         run: ${{steps.hello.outputs.sailings}} > sailings.json
-      - name: LS
-        run: ls
+      - name: Commit files
+        run: |
+              git config --local user.email "action@github.com"
+              git config --local user.name "GitHub Action"
+              git commit -m "Add changes" -a
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
