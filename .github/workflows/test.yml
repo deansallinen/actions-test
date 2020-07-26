@@ -19,12 +19,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      id: hello
-      uses: deansallinen/actions-test@v1.5
-      with: 
-        who-to-greet: 'Dean'
-
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Hello world action step
+        uses: ./ # Uses an action in the root directory
+        id: hello
+        with: 
+          who-to-greet: 'Dean'
