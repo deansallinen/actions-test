@@ -27,20 +27,13 @@ jobs:
         uses: ./ # Uses an action in the root directory
         id: hello
         
-      - name: Checkout Ferrytime
-        uses: actions/checkout@v2
-        with:
-    # Repository name with owner. For example, actions/checkout
-    # Default: ${{ github.repository }}
-            repository: 'deansallinen/ferrytime'
-            path: main
-            
       - name: Commit files
         run: |
               git config --local user.email "action@github.com"
               git config --local user.name "GitHub Action"
               git add sailings.json
               git commit -m "Add changes" -a
+              
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
